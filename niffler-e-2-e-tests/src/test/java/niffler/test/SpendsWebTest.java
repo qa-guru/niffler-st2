@@ -1,26 +1,25 @@
 package niffler.test;
 
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import niffler.jupiter.*;
+import niffler.model.CategoryJson;
+import niffler.model.CurrencyValues;
+import niffler.model.SpendJson;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
-import niffler.jupiter.GenerateSpend;
-import niffler.jupiter.GenerateSpendExtension;
-import niffler.model.CurrencyValues;
-import niffler.model.SpendJson;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-
-@Disabled
-@ExtendWith(GenerateSpendExtension.class)
+@ExtendWith({GenerateSpendExtension.class, CategoryExtension.class})
 public class SpendsWebTest {
 
     static {
+        Configuration.browser = "firefox";
         Configuration.browserSize = "1920x1080";
     }
 
@@ -28,17 +27,18 @@ public class SpendsWebTest {
     void doLogin() {
         Selenide.open("http://127.0.0.1:3000/main");
         $("a[href*='redirect']").click();
-        $("input[name='username']").setValue("dima");
+        $("input[name='username']").setValue("cifer");
         $("input[name='password']").setValue("12345");
         $("button[type='submit']").click();
     }
 
+    @Category(username = "cifer", category = "first category")
     @GenerateSpend(
-        username = "dima",
-        description = "QA GURU ADVANCED VOL 2",
+        username = "cifer",
+        category = "first category",
+        description = "first description",
         currency = CurrencyValues.RUB,
-        amount = 52000.00,
-        category = "Обучение"
+        amount = 5000.00
     )
     @Test
     void spendShouldBeDeletedByActionInTable(SpendJson spend) {

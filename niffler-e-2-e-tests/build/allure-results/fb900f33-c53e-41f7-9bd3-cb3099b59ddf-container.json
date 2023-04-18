@@ -1,0 +1,1 @@
+{"uuid":"fb900f33-c53e-41f7-9bd3-cb3099b59ddf","name":"spendShouldBeDeletedByActionInTable(SpendJson)","children":["d86073e1-bfaa-4192-bd3d-8658cb597520"],"befores":[{"name":"doLogin","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1681848076321,"stop":1681848080728}],"afters":[],"start":1681848074669,"stop":1681848080947}
