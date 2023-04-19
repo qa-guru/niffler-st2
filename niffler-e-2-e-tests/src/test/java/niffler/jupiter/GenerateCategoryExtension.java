@@ -6,12 +6,12 @@ import niffler.model.ISpend;
 import niffler.utils.PropertyHandler;
 import org.junit.jupiter.api.extension.*;
 
-public class CategoryExtension implements ParameterResolver, BeforeEachCallback {
+public class GenerateCategoryExtension implements ParameterResolver, BeforeEachCallback {
 
     private final PropertyHandler props = new PropertyHandler("./src/test/resources/property.properties");
 
-    private static final ExtensionContext.Namespace NAMESPACE = ExtensionContext.Namespace
-            .create(CategoryExtension.class);
+    public static final ExtensionContext.Namespace CATEGORY_NAMESPACE = ExtensionContext.Namespace
+            .create(GenerateCategoryExtension.class);
 
     private final HttpHandler httpHandler = new HttpHandler(props.get("spend.category.baseurl"));
 
@@ -27,7 +27,7 @@ public class CategoryExtension implements ParameterResolver, BeforeEachCallback 
 
             ISpend response = httpHandler.executePost(props.get("request.category.path"), category);
 
-            context.getStore(NAMESPACE).put(props.get("category.objname"), response);
+            context.getStore(CATEGORY_NAMESPACE).put(props.get("category.objname"), response);
         }
     }
 
@@ -40,7 +40,7 @@ public class CategoryExtension implements ParameterResolver, BeforeEachCallback 
     @Override
     public CategoryJson resolveParameter(ParameterContext parameterContext,
                                       ExtensionContext extensionContext) throws ParameterResolutionException {
-        return extensionContext.getStore(NAMESPACE).get(props.get("category.objname"), CategoryJson.class);
+        return extensionContext.getStore(CATEGORY_NAMESPACE).get(props.get("category.objname"), CategoryJson.class);
     }
 
 }

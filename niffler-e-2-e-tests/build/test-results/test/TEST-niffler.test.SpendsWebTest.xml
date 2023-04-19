@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="niffler.test.SpendsWebTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-04-18T21:47:11" hostname="PUPENKOV" time="8.57">
+<testsuite name="niffler.test.SpendsWebTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-04-19T15:04:38" hostname="PUPENKOV" time="7.561">
   <properties/>
-  <testcase name="spendShouldBeDeletedByActionInTable(SpendJson)" classname="niffler.test.SpendsWebTest" time="8.57"/>
+  <testcase name="spendShouldBeDeletedByActionInTable(SpendJson)" classname="niffler.test.SpendsWebTest" time="7.561"/>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[1681854434760	geckodriver	INFO	Listening on 127.0.0.1:44037
-1681854435140	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "45673" "--remote ... localhost:45673/,http://[::1]:45673/" "-no-remote" "-profile" "C:\\Users\\proek\\AppData\\Local\\Temp\\rust_mozprofilepGZH89"
+  <system-err><![CDATA[1681916680777	geckodriver	INFO	Listening on 127.0.0.1:5673
+1681916681093	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "33123" "--remote ... localhost:33123/,http://[::1]:33123/" "-no-remote" "-profile" "C:\\Users\\proek\\AppData\\Local\\Temp\\rust_mozprofileyq97FG"
 console.warn: services.settings: Ignoring preference override of remote settings server
 console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
-1681854435428	Marionette	INFO	Marionette enabled
+1681916681355	Marionette	INFO	Marionette enabled
 Dynamically enable window occlusion 0
-1681854435433	Marionette	INFO	Listening on port 50537
-Read port: 50537
-WebDriver BiDi listening on ws://127.0.0.1:45673
-1681854435533	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
-console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\proek\\AppData\\Local\\Temp\\rust_mozprofilepGZH89\\search.json.mozlz4", (void 0)))
-DevTools listening on ws://127.0.0.1:45673/devtools/browser/7516704c-3d6d-43be-a31d-380a45910ac5
+1681916681359	Marionette	INFO	Listening on port 63999
+WebDriver BiDi listening on ws://127.0.0.1:33123
+Read port: 63999
+1681916681561	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\proek\\AppData\\Local\\Temp\\rust_mozprofileyq97FG\\search.json.mozlz4", (void 0)))
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+DevTools listening on ws://127.0.0.1:33123/devtools/browser/1f9bc664-c722-4a36-96de-febc380c120b
 console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:9000."
 console.warn: LoginRecipes: "Falling back to a synchronous message for: http://127.0.0.1:9000."
 JavaScript error: resource://gre/modules/XULStore.jsm, line 58: Error: Can't find profile directory.

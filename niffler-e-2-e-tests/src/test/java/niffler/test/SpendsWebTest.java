@@ -4,7 +4,6 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import niffler.jupiter.*;
-import niffler.model.CategoryJson;
 import niffler.model.CurrencyValues;
 import niffler.model.SpendJson;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +14,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-@ExtendWith({GenerateSpendExtension.class, CategoryExtension.class})
+@ExtendWith({GenerateCategoryExtension.class, GenerateSpendExtension.class})
 public class SpendsWebTest {
 
     static {
@@ -33,9 +32,7 @@ public class SpendsWebTest {
     }
 
     @Category(username = "cifer", category = "first category")
-    @GenerateSpend(
-        username = "cifer",
-        category = "first category",
+    @GenerateSpend(username = "", category = "",
         description = "first description",
         currency = CurrencyValues.RUB,
         amount = 5000.00
