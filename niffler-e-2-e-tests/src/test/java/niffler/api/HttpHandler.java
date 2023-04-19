@@ -28,4 +28,5 @@ public class HttpHandler {
                     .extract()
                     .as(pojo.getClass());
     }
+
 }

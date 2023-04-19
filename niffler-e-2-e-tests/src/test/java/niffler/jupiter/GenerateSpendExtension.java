@@ -48,4 +48,5 @@ public class GenerateSpendExtension implements ParameterResolver, BeforeTestExec
             context.getStore(NAMESPACE).put(props.get("spend.objname"), response);
         }
     }
+
 }

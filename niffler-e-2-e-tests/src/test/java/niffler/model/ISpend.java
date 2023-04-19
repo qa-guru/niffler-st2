@@ -1,4 +1,3 @@
 package niffler.model;
 
-public interface ISpend {
-}
+public interface ISpend {}

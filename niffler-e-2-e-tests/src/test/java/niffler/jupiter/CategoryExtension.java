@@ -42,4 +42,5 @@ public class CategoryExtension implements ParameterResolver, BeforeEachCallback 
                                       ExtensionContext extensionContext) throws ParameterResolutionException {
         return extensionContext.getStore(NAMESPACE).get(props.get("category.objname"), CategoryJson.class);
     }
+
 }

@@ -2,14 +2,13 @@ package niffler.model;
 
 import java.util.UUID;
 
-public class CategoryJson implements ISpend{
+public class CategoryJson implements ISpend {
 
     private UUID id;
     private String category;
     private String username;
 
-    public CategoryJson() {
-    }
+    public CategoryJson() {}
 
     public UUID getId() {
         return id;
@@ -34,4 +33,5 @@ public class CategoryJson implements ISpend{
     public void setUsername(String username) {
         this.username = username;
     }
+
 }

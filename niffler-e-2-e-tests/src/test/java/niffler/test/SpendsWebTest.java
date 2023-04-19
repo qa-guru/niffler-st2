@@ -42,6 +42,7 @@ public class SpendsWebTest {
     )
     @Test
     void spendShouldBeDeletedByActionInTable(SpendJson spend) {
+
         $(".spendings-table tbody").$$("tr")
             .find(text(spend.getDescription()))
             .$$("td").first()
