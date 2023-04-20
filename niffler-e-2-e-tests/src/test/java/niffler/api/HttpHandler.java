@@ -1,6 +1,7 @@
 package niffler.api;
 
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import niffler.model.ISpend;
 import java.net.URI;
@@ -18,15 +19,17 @@ public class HttpHandler {
     }
 
     public ISpend executePost(String path, ISpend pojo) {
-        return given()
+        Response response = given()
             .spec(requestSpecification)
                 .contentType("application/json")
             .body(pojo)
             .post(path)
-                .then()
-                .statusCode(oneOf(200, 201))
-                    .extract()
-                    .as(pojo.getClass());
+                .then().extract().response();
+//                .statusCode(oneOf(200, 201))
+        if(response.statusCode() == 200 || response.statusCode() == 201){
+            return response.as(pojo.getClass());
+        }
+        return null;
     }
 
 }

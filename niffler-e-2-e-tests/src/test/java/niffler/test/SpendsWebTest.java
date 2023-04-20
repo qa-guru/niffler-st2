@@ -3,9 +3,14 @@ package niffler.test;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import niffler.jupiter.*;
+import niffler.jupiter.Category;
+import niffler.jupiter.GenerateCategoryExtension;
+import niffler.jupiter.GenerateSpend;
+import niffler.jupiter.GenerateSpendExtension;
+import niffler.model.CategoryJson;
 import niffler.model.CurrencyValues;
 import niffler.model.SpendJson;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,8 +36,8 @@ public class SpendsWebTest {
         $("button[type='submit']").click();
     }
 
-    @Category(username = "cifer", category = "first category")
-    @GenerateSpend(username = "", category = "",
+    @GenerateSpend(
+        category = @Category(username = "cifer", category = "first category"),
         description = "first description",
         currency = CurrencyValues.RUB,
         amount = 5000.00
@@ -52,5 +57,13 @@ public class SpendsWebTest {
         $(".spendings-table tbody")
             .$$("tr")
             .shouldHave(CollectionCondition.size(0));
+    }
+
+    @Category(username = "cifer", category = "first category")
+    @Test
+    void createCategory(CategoryJson category) {
+        Assertions.assertNotNull(category, "Invalid query or record already exists in the DB!");
+        Assertions.assertEquals("cifer", category.getUsername());
+        Assertions.assertEquals("first category", category.getCategory());
     }
 }

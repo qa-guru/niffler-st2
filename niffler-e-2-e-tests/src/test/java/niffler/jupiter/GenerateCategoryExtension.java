@@ -6,6 +6,9 @@ import niffler.model.ISpend;
 import niffler.utils.PropertyHandler;
 import org.junit.jupiter.api.extension.*;
 
+import java.lang.reflect.AnnotatedElement;
+import java.util.Arrays;
+
 public class GenerateCategoryExtension implements ParameterResolver, BeforeEachCallback {
 
     private final PropertyHandler props = new PropertyHandler("./src/test/resources/property.properties");
@@ -18,7 +21,7 @@ public class GenerateCategoryExtension implements ParameterResolver, BeforeEachC
     @Override
     public void beforeEach(ExtensionContext context) {
 
-        Category categoryAnnotation = context.getRequiredTestMethod().getAnnotation(Category.class);
+        Category categoryAnnotation = getCategoryAnnotation(context);
 
         if (categoryAnnotation != null) {
             CategoryJson category = new CategoryJson();
@@ -29,6 +32,20 @@ public class GenerateCategoryExtension implements ParameterResolver, BeforeEachC
 
             context.getStore(CATEGORY_NAMESPACE).put(props.get("category.objname"), response);
         }
+    }
+
+    private Category getCategoryAnnotation(ExtensionContext context) {
+
+        Category categoryAnnotation = null;
+        AnnotatedElement annotatedElement = context.getElement().get();
+
+        if(Arrays.stream(annotatedElement.getDeclaredAnnotations())
+                .anyMatch(annotation -> annotation.annotationType() == Category.class)) {
+            categoryAnnotation = annotatedElement.getAnnotation(Category.class);
+        } else {
+            categoryAnnotation = annotatedElement.getAnnotation(GenerateSpend.class).category();
+        }
+        return categoryAnnotation;
     }
 
     @Override

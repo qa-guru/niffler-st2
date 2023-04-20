@@ -41,10 +41,16 @@ public class GenerateSpendExtension implements ParameterResolver, BeforeEachCall
 
         if (annotation != null) {
             SpendJson spend = new SpendJson();
-            spend.setUsername(categoryJson.getUsername());
+            if(categoryJson != null) {
+                spend.setUsername(categoryJson.getUsername());
+                spend.setCategory(categoryJson.getCategory());
+            } else {
+                Category category = context.getElement().get().getAnnotation(GenerateSpend.class).category();
+                spend.setUsername(category.username());
+                spend.setCategory(category.category());
+            }
             spend.setAmount(annotation.amount());
             spend.setDescription(annotation.description());
-            spend.setCategory(categoryJson.getCategory());
             spend.setSpendDate(new Date());
             spend.setCurrency(annotation.currency());
 
