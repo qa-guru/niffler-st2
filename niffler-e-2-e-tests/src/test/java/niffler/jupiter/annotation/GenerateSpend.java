@@ -1,4 +1,4 @@
-package niffler.jupiter;
+package niffler.jupiter.annotation;
 
 
 import niffler.model.CurrencyValues;

@@ -1,15 +1,17 @@
-package niffler.jupiter;
+package niffler.jupiter.extension;
 
 import java.util.Date;
 
 import niffler.api.HttpHandler;
+import niffler.jupiter.annotation.Category;
 import niffler.model.CategoryJson;
 import niffler.model.ISpend;
+import niffler.jupiter.annotation.GenerateSpend;
 import niffler.model.SpendJson;
 import niffler.utils.PropertyHandler;
 import org.junit.jupiter.api.extension.*;
 
-import static niffler.jupiter.GenerateCategoryExtension.CATEGORY_NAMESPACE;
+import static niffler.jupiter.extension.GenerateCategoryExtension.CATEGORY_NAMESPACE;
 
 public class GenerateSpendExtension implements ParameterResolver, BeforeEachCallback {
 
