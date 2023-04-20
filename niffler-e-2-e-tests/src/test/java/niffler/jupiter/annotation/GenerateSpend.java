@@ -1,6 +1,7 @@
 package niffler.jupiter.annotation;
 
 
+import niffler.jupiter.annotation.Category;
 import niffler.model.CurrencyValues;
 
 import java.lang.annotation.ElementType;

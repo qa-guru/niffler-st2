@@ -1,6 +1,8 @@
-package niffler.jupiter;
+package niffler.jupiter.extension;
 
 import niffler.api.HttpHandler;
+import niffler.jupiter.annotation.Category;
+import niffler.jupiter.annotation.GenerateSpend;
 import niffler.model.CategoryJson;
 import niffler.model.ISpend;
 import niffler.utils.PropertyHandler;
@@ -36,7 +38,7 @@ public class GenerateCategoryExtension implements ParameterResolver, BeforeEachC
 
     private Category getCategoryAnnotation(ExtensionContext context) {
 
-        Category categoryAnnotation = null;
+        Category categoryAnnotation;
         AnnotatedElement annotatedElement = context.getElement().get();
 
         if(Arrays.stream(annotatedElement.getDeclaredAnnotations())
