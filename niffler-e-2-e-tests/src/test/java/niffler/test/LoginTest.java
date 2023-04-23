@@ -38,12 +38,15 @@ public class LoginTest extends BaseWebTest {
   }
 
   @ValueSource(strings = {
-          "testdata/cifer.json",
-          "testdata/oldbeard.json"
+          "testdata/sasha.json",
+          "testdata/kevin.json"
   })
   @AllureId("104")
   @ParameterizedTest
-  void updateUserData(@ClasspathUser UserJson user) throws IOException {
+  void updateUserData(
+          @ClasspathUser
+          UserJson user
+      ) throws IOException {
 
     OkHttpClient httpClient = new OkHttpClient.Builder()
             .build();

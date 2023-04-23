@@ -21,29 +21,58 @@ public class FriendsWebTest extends BaseWebTest {
 
   @AllureId("102")
   @Test
-  void friendsShouldBeVisible0(@User(userType = WITH_FRIENDS) UserJson user) {
+  void invitationShouldBeVisible(@User(userType = WITH_FRIENDS) UserJson user1,
+                               @User(userType = INVITATION_SENT) UserJson user2) {
     Allure.step("open page", () -> Selenide.open("http://127.0.0.1:3000/main"));
-    $("a[href*='redirect']").click();
-    $("input[name='username']").setValue(user.getUsername());
-    $("input[name='password']").setValue(user.getPassword());
-    $("button[type='submit']").click();
 
-    $("a[href*='friends']").click();
-    $$(".table tbody tr").shouldHave(sizeGreaterThan(0));
+    loginPage.login(user1);
+    navigationPanel
+        .openTabFriends();
+    invitationTableForm
+        .checkThatInvitationListIsEmpty();
+    navigationPanel
+        .logout()
+        .login(user2);
+    navigationPanel
+        .openTabPeoples()
+        .addFriend(user1.getUsername())
+        .logout();
+    loginPage.login(user1);
+    navigationPanel
+        .openTabFriends();
+    invitationTableForm
+        .checkInvitationBtnOfUser(user2.getUsername());
+
   }
 
   @AllureId("103")
   @Test
-  void friendsShouldBeVisible1(@User(userType = INVITATION_SENT) UserJson user) {
+  void friendsShouldBeVisible2(@User(userType = WITH_FRIENDS) UserJson user1,
+                               @User(userType = INVITATION_SENT) UserJson user2) {
     Allure.step("open page", () -> Selenide.open("http://127.0.0.1:3000/main"));
     $("a[href*='redirect']").click();
-    $("input[name='username']").setValue(user.getUsername());
-    $("input[name='password']").setValue(user.getPassword());
+    $("input[name='username']").setValue(user1.getUsername());
+    $("input[name='password']").setValue(user1.getPassword());
     $("button[type='submit']").click();
 
     $("a[href*='people']").click();
     $$(".table tbody tr").find(Condition.text("Pending invitation"))
         .should(Condition.visible);
+  }
+
+  @AllureId("103")
+  @Test
+  void friendsShouldBeVisible3(@User(userType = WITH_FRIENDS) UserJson user1,
+                               @User(userType = INVITATION_SENT) UserJson user2) {
+    Allure.step("open page", () -> Selenide.open("http://127.0.0.1:3000/main"));
+    $("a[href*='redirect']").click();
+    $("input[name='username']").setValue(user1.getUsername());
+    $("input[name='password']").setValue(user1.getPassword());
+    $("button[type='submit']").click();
+
+    $("a[href*='people']").click();
+    $$(".table tbody tr").find(Condition.text("Pending invitation"))
+            .should(Condition.visible);
   }
 
 }

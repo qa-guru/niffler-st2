@@ -7,9 +7,9 @@ import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.params.converter.ArgumentConversionException;
 import org.junit.jupiter.params.converter.ArgumentConverter;
 
-public class ClasspathUserConverter implements ArgumentConverter {
+public class ClasspathUserUpdateConverter implements ArgumentConverter {
 
-  private ClassLoader cl = ClasspathUserConverter.class.getClassLoader();
+  private ClassLoader cl = ClasspathUserUpdateConverter.class.getClassLoader();
   private static ObjectMapper om = new ObjectMapper();
 
   @Override
