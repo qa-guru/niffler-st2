@@ -59,11 +59,11 @@ public class SpendsWebTest {
             .shouldHave(CollectionCondition.size(0));
     }
 
-    @Category(username = "cifer", category = "first category")
+    @Category(username = "cifer", category = "second category")
     @Test
     void createCategory(CategoryJson category) {
         Assertions.assertNotNull(category, "Invalid query or record already exists in the DB!");
         Assertions.assertEquals("cifer", category.getUsername());
-        Assertions.assertEquals("first category", category.getCategory());
+        Assertions.assertEquals("second category", category.getCategory());
     }
 }

@@ -38,13 +38,15 @@ public class GenerateCategoryExtension implements ParameterResolver, BeforeEachC
 
     private Category getCategoryAnnotation(ExtensionContext context) {
 
-        Category categoryAnnotation;
+        Category categoryAnnotation = null;
         AnnotatedElement annotatedElement = context.getElement().get();
 
         if(Arrays.stream(annotatedElement.getDeclaredAnnotations())
                 .anyMatch(annotation -> annotation.annotationType() == Category.class)) {
             categoryAnnotation = annotatedElement.getAnnotation(Category.class);
-        } else {
+        }
+        if(Arrays.stream(annotatedElement.getDeclaredAnnotations())
+                .anyMatch(annotation -> annotation.annotationType() == GenerateSpend.class)) {
             categoryAnnotation = annotatedElement.getAnnotation(GenerateSpend.class).category();
         }
         return categoryAnnotation;
