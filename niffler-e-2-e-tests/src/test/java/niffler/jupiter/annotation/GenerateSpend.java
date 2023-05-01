@@ -1,21 +1,21 @@
 package niffler.jupiter.annotation;
 
 
+import niffler.jupiter.annotation.Category;
+import niffler.model.CurrencyValues;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import niffler.model.CurrencyValues;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface GenerateSpend {
 
+  Category category();
+
   String description();
-
-  String username();
-
-  String category();
 
   double amount();
 

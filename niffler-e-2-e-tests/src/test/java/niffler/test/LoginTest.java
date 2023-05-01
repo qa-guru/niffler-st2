@@ -8,10 +8,15 @@ import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Allure;
 import io.qameta.allure.AllureId;
 import java.io.IOException;
+
+import niffler.api.UserService;
 import niffler.jupiter.annotation.ClasspathUser;
 import niffler.model.UserJson;
+import okhttp3.OkHttpClient;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import retrofit2.Retrofit;
+import retrofit2.converter.jackson.JacksonConverterFactory;
 
 public class LoginTest extends BaseWebTest {
   
@@ -30,6 +35,32 @@ public class LoginTest extends BaseWebTest {
 
     $("a[href*='friends']").click();
     $(".header").should(visible).shouldHave(text("Niffler. The coin keeper."));
+  }
+
+  @ValueSource(strings = {
+          "testdata/sasha.json",
+          "testdata/kevin.json"
+  })
+  @AllureId("104")
+  @ParameterizedTest
+  void updateUserData(
+          @ClasspathUser
+          UserJson user
+      ) throws IOException {
+
+    OkHttpClient httpClient = new OkHttpClient.Builder()
+            .build();
+
+    Retrofit retrofit = new Retrofit.Builder()
+            .client(httpClient)
+            .baseUrl("http://127.0.0.1:8089")
+            .addConverterFactory(JacksonConverterFactory.create())
+            .build();
+
+    UserJson body = retrofit.create(UserService.class)
+            .updateUserInfo(user)
+            .execute()
+            .body();
   }
 
 }

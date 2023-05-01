@@ -1,0 +1,1 @@
+{"uuid":"b03d1ebf-80de-483e-8b81-8304ec2ce146","name":"createCategory(CategoryJson)","children":["2c1575ca-9ed3-42fc-81ce-f29b13a791b0"],"befores":[{"name":"doLogin","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1681997946704,"stop":1681997951407}],"afters":[],"start":1681997944910,"stop":1681997952497}
