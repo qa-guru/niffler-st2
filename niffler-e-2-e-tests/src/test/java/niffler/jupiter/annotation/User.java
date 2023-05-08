@@ -9,11 +9,11 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface User {
 
-  UserType userType();
+    UserType userType();
 
-  enum UserType {
-    WITH_FRIENDS, // dima, barsik
-    INVITATION_SENT, // emma, emily
-    INVITATION_RECEIVED, // anna, bill
-  }
+    enum UserType {
+        WITH_FRIENDS, // dima, barsik
+        INVITATION_SENT, // emma, emily
+        INVITATION_RECEIVED // anna, bill
+    }
 }

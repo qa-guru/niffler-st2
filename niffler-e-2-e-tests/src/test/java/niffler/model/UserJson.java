@@ -2,6 +2,7 @@ package niffler.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 import java.util.UUID;
 
@@ -10,9 +11,7 @@ public class UserJson {
     private UUID id;
     @JsonProperty("username")
     private String username;
-
     private transient String password;
-
     @JsonProperty("firstname")
     private String firstname;
     @JsonProperty("surname")
