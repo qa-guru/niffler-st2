@@ -2,6 +2,7 @@ package guru.qa.niffler.test.web;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Selenide;
+import com.github.tomakehurst.wiremock.client.WireMock;
 import guru.qa.niffler.jupiter.annotation.ApiLogin;
 import guru.qa.niffler.jupiter.annotation.Category;
 import guru.qa.niffler.jupiter.annotation.GenerateSpend;
@@ -18,6 +19,9 @@ import static com.codeborne.selenide.Selenide.$$;
 import static guru.qa.niffler.condition.SpendCondition.spends;
 
 public class SpendsWebTest extends BaseWebTest {
+
+
+    private WireMock wireMock = new WireMock("userdata.niffler.dc", 9000);
 
     @ApiLogin(user = @GenerateUser(
             categories = @Category("Обучение"),
