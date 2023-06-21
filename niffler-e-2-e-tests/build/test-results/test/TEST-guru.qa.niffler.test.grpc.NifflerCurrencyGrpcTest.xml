@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="guru.qa.niffler.test.grpc.NifflerCurrencyGrpcTest" tests="3" skipped="0" failures="2" errors="0" timestamp="2023-06-21T18:25:23" hostname="Dmitrijs-MacBook-Pro.local" time="0.562">
+  <properties/>
+  <testcase name="При пересчете из USD в USD суммы 100.0 должен возвращаться результат 100.0" classname="guru.qa.niffler.test.grpc.NifflerCurrencyGrpcTest" time="0.561"/>
+  <testcase name="При пересчете из USD в RUB суммы 100.0 должен возвращаться результат 6666.67" classname="guru.qa.niffler.test.grpc.NifflerCurrencyGrpcTest" time="0.561">
+    <failure message="io.grpc.StatusRuntimeException: NOT_FOUND: &#10;                                               Request was not matched&#10;                                               =======================&#10;&#10;-----------------------------------------------------------------------------------------------------------------------&#10;| Closest stub                                             | Request                                                  |&#10;-----------------------------------------------------------------------------------------------------------------------&#10;                                                           |&#10;POST                                                       | POST&#10;/NifflerCurrencyService/calculateRate                      | /NifflerCurrencyService/calculateRate&#10;                                                           |&#10;{                                                          | {                                                   &lt;&lt;&lt;&lt;&lt; Body does not match&#10;  &quot;spendCurrency&quot; : &quot;USD&quot;,                                 |   &quot;spendCurrency&quot; : &quot;USD&quot;,&#10;  &quot;desiredCurrency&quot; : &quot;USD&quot;,                               |   &quot;amount&quot; : 100&#10;  &quot;amount&quot; : 100                                           | }&#10;}                                                          |&#10;                                                           |&#10;-----------------------------------------------------------------------------------------------------------------------&#10;" type="io.grpc.StatusRuntimeException">io.grpc.StatusRuntimeException: NOT_FOUND: 
+                                               Request was not matched
+                                               =======================
+
+-----------------------------------------------------------------------------------------------------------------------
+| Closest stub                                             | Request                                                  |
+-----------------------------------------------------------------------------------------------------------------------
+                                                           |
+POST                                                       | POST
+/NifflerCurrencyService/calculateRate                      | /NifflerCurrencyService/calculateRate
+                                                           |
+{                                                          | {                                                   &lt;&lt;&lt;&lt;&lt; Body does not match
+  &quot;spendCurrency&quot; : &quot;USD&quot;,                                 |   &quot;spendCurrency&quot; : &quot;USD&quot;,
+  &quot;desiredCurrency&quot; : &quot;USD&quot;,                               |   &quot;amount&quot; : 100
+  &quot;amount&quot; : 100                                           | }
+}                                                          |
+                                                           |
+-----------------------------------------------------------------------------------------------------------------------
+
+	at app//io.grpc.stub.ClientCalls.toStatusRuntimeException(ClientCalls.java:271)
+	at app//io.grpc.stub.ClientCalls.getUnchecked(ClientCalls.java:252)
+	at app//io.grpc.stub.ClientCalls.blockingUnaryCall(ClientCalls.java:165)
+	at app//guru.qa.grpc.niffler.grpc.NifflerCurrencyServiceGrpc$NifflerCurrencyServiceBlockingStub.calculateRate(NifflerCurrencyServiceGrpc.java:217)
+	at app//guru.qa.niffler.test.grpc.NifflerCurrencyGrpcTest.lambda$calculateRateTest$6(NifflerCurrencyGrpcTest.java:80)
+	at app//io.qameta.allure.Allure.lambda$step$1(Allure.java:127)
+	at app//io.qameta.allure.Allure.step(Allure.java:181)
+	at app//io.qameta.allure.Allure.step(Allure.java:125)
+	at app//guru.qa.niffler.test.grpc.NifflerCurrencyGrpcTest.calculateRateTest(NifflerCurrencyGrpcTest.java:79)
+	at java.base@19.0.2/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base@19.0.2/java.lang.reflect.Method.invoke(Method.java:578)
+	at app//org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
+	at app//org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at app//io.qameta.allure.junit5.AllureJunit5.interceptTestTemplateMethod(AllureJunit5.java:59)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at app//org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at app//org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at app//org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestTemplateMethod(TimeoutExtension.java:94)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:217)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at app//org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at app//org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService$ExclusiveTask.compute(ForkJoinPoolHierarchicalTestExecutorService.java:202)
+	at java.base@19.0.2/java.util.concurrent.RecursiveAction.exec(RecursiveAction.java:194)
+	at java.base@19.0.2/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
+	at java.base@19.0.2/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1311)
+	at java.base@19.0.2/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1841)
+	at java.base@19.0.2/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1806)
+	at java.base@19.0.2/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:177)
+</failure>
+  </testcase>
+  <testcase name="При пересчете из RUB в USD суммы 100.0 должен возвращаться результат 1.5" classname="guru.qa.niffler.test.grpc.NifflerCurrencyGrpcTest" time="0.562">
+    <failure message="io.grpc.StatusRuntimeException: NOT_FOUND: &#10;                                               Request was not matched&#10;                                               =======================&#10;&#10;-----------------------------------------------------------------------------------------------------------------------&#10;| Closest stub                                             | Request                                                  |&#10;-----------------------------------------------------------------------------------------------------------------------&#10;                                                           |&#10;POST                                                       | POST&#10;/NifflerCurrencyService/calculateRate                      | /NifflerCurrencyService/calculateRate&#10;                                                           |&#10;{                                                          | {                                                   &lt;&lt;&lt;&lt;&lt; Body does not match&#10;  &quot;spendCurrency&quot; : &quot;USD&quot;,                                 |   &quot;desiredCurrency&quot; : &quot;USD&quot;,&#10;  &quot;desiredCurrency&quot; : &quot;USD&quot;,                               |   &quot;amount&quot; : 100&#10;  &quot;amount&quot; : 100                                           | }&#10;}                                                          |&#10;                                                           |&#10;-----------------------------------------------------------------------------------------------------------------------&#10;" type="io.grpc.StatusRuntimeException">io.grpc.StatusRuntimeException: NOT_FOUND: 
+                                               Request was not matched
+                                               =======================
+
+-----------------------------------------------------------------------------------------------------------------------
+| Closest stub                                             | Request                                                  |
+-----------------------------------------------------------------------------------------------------------------------
+                                                           |
+POST                                                       | POST
+/NifflerCurrencyService/calculateRate                      | /NifflerCurrencyService/calculateRate
+                                                           |
+{                                                          | {                                                   &lt;&lt;&lt;&lt;&lt; Body does not match
+  &quot;spendCurrency&quot; : &quot;USD&quot;,                                 |   &quot;desiredCurrency&quot; : &quot;USD&quot;,
+  &quot;desiredCurrency&quot; : &quot;USD&quot;,                               |   &quot;amount&quot; : 100
+  &quot;amount&quot; : 100                                           | }
+}                                                          |
+                                                           |
+-----------------------------------------------------------------------------------------------------------------------
+
+	at app//io.grpc.stub.ClientCalls.toStatusRuntimeException(ClientCalls.java:271)
+	at app//io.grpc.stub.ClientCalls.getUnchecked(ClientCalls.java:252)
+	at app//io.grpc.stub.ClientCalls.blockingUnaryCall(ClientCalls.java:165)
+	at app//guru.qa.grpc.niffler.grpc.NifflerCurrencyServiceGrpc$NifflerCurrencyServiceBlockingStub.calculateRate(NifflerCurrencyServiceGrpc.java:217)
+	at app//guru.qa.niffler.test.grpc.NifflerCurrencyGrpcTest.lambda$calculateRateTest$6(NifflerCurrencyGrpcTest.java:80)
+	at app//io.qameta.allure.Allure.lambda$step$1(Allure.java:127)
+	at app//io.qameta.allure.Allure.step(Allure.java:181)
+	at app//io.qameta.allure.Allure.step(Allure.java:125)
+	at app//guru.qa.niffler.test.grpc.NifflerCurrencyGrpcTest.calculateRateTest(NifflerCurrencyGrpcTest.java:79)
+	at java.base@19.0.2/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base@19.0.2/java.lang.reflect.Method.invoke(Method.java:578)
+	at app//org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
+	at app//org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at app//io.qameta.allure.junit5.AllureJunit5.interceptTestTemplateMethod(AllureJunit5.java:59)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at app//org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at app//org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at app//org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestTemplateMethod(TimeoutExtension.java:94)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at app//org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at app//org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:217)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at app//org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at app//org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at app//org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at app//org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at app//org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService$ExclusiveTask.compute(ForkJoinPoolHierarchicalTestExecutorService.java:202)
+	at java.base@19.0.2/java.util.concurrent.RecursiveAction.exec(RecursiveAction.java:194)
+	at java.base@19.0.2/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
+	at java.base@19.0.2/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1311)
+	at java.base@19.0.2/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1841)
+	at java.base@19.0.2/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1806)
+	at java.base@19.0.2/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:177)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

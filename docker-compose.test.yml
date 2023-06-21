@@ -44,13 +44,15 @@ services:
 
   currency.niffler.dc:
     container_name: currency.niffler.dc
-    image: dtuchs/niffler-currency:latest
-    expose:
-      - "8091"
-      - "8092"
-    depends_on:
-      niffler-all-db:
-        condition: service_healthy
+    image: adven27/grpc-wiremock:latest
+    volumes:
+      - ./grpcwiremock:/wiremock
+      - ./niffler-grpc-common/src/main/proto:/proto
+    ports:
+      - "8888:8888"
+      - "8092:8092"
+    environment:
+      - "GRPC_SERVER_PORT=8092"
     networks:
       - test-network
     dns_search: .

@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/NifflerCurrencyService/getAllCurrencies"
+  },
+  "response": {
+    "status": 200,
+    "body": "{\n  \"allCurrencies\": [\n    {\n      \"currency\": \"RUB\",\n      \"currencyRate\":  0.015\n    },\n  {\n      \"currency\": \"KZT\",\n      \"currencyRate\": 0.0021\n    },\n    {\n      \"currency\": \"EUR\",\n      \"currencyRate\": 1.08\n    },\n  {\n      \"currency\": \"USD\",\n      \"currencyRate\": 1.0\n    }\n   ]\n}",
+
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

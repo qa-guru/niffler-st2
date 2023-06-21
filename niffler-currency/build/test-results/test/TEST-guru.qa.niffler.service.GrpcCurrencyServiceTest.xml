@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="guru.qa.niffler.service.GrpcCurrencyServiceTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-06-21T18:16:34" hostname="Dmitrijs-MacBook-Pro.local" time="0.289">
+  <properties/>
+  <testcase name="[1] spend=150.0, spendCurrency=RUB, desiredCurrency=KZT, expectedResult=1071.43" classname="guru.qa.niffler.service.GrpcCurrencyServiceTest" time="0.281"/>
+  <testcase name="[2] spend=34.0, spendCurrency=USD, desiredCurrency=EUR, expectedResult=31.48" classname="guru.qa.niffler.service.GrpcCurrencyServiceTest" time="0.001"/>
+  <testcase name="[3] spend=150.0, spendCurrency=RUB, desiredCurrency=RUB, expectedResult=150.0" classname="guru.qa.niffler.service.GrpcCurrencyServiceTest" time="0.001"/>
+  <testcase name="[4] spend=0.0, spendCurrency=KZT, desiredCurrency=RUB, expectedResult=0.0" classname="guru.qa.niffler.service.GrpcCurrencyServiceTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

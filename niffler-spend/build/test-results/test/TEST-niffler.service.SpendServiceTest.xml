@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="niffler.service.SpendServiceTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2023-06-21T18:16:36" hostname="Dmitrijs-MacBook-Pro.local" time="0.753">
+  <properties/>
+  <testcase name="getStatisticTest()" classname="niffler.service.SpendServiceTest" time="0.703"/>
+  <testcase name="enrichStatisticTotalInUserCurrencyByAllStreamElementsSameCurrencyTest()" classname="niffler.service.SpendServiceTest" time="0.004"/>
+  <testcase name="enrichStatisticTotalAmountByAllStreamElementsTest()" classname="niffler.service.SpendServiceTest" time="0.003"/>
+  <testcase name="[1] tested=null, expected=[RUB, USD, EUR, KZT]" classname="niffler.service.SpendServiceTest" time="0.01"/>
+  <testcase name="[2] tested=KZT, expected=[KZT]" classname="niffler.service.SpendServiceTest" time="0.002"/>
+  <testcase name="[3] tested=USD, expected=[USD]" classname="niffler.service.SpendServiceTest" time="0.002"/>
+  <testcase name="enrichStatisticDateFromByFirstStreamElementTest()" classname="niffler.service.SpendServiceTest" time="0.002"/>
+  <testcase name="bindSpendsToCategoriesTest()" classname="niffler.service.SpendServiceTest" time="0.002"/>
+  <testcase name="createDefaultStatisticJsonTest()" classname="niffler.service.SpendServiceTest" time="0.002"/>
+  <testcase name="enrichStatisticTotalInUserCurrencyByAllStreamElementsDifferentCurrencyTest()" classname="niffler.service.SpendServiceTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
