@@ -49,7 +49,7 @@ spring:
       group-id: 'userdata'
       auto-offset-reset: earliest
   datasource:
-    url: 'jdbc:postgresql://localhost:5432/niffler-userdata'
+    url: 'jdbc:postgresql://localhost:5434/niffler-userdata'
   jpa:
     hibernate:
       ddl-auto: validate
@@ -64,7 +64,7 @@ spring:
       group-id: 'userdata'
       auto-offset-reset: earliest
   datasource:
-    url: 'jdbc:postgresql://niffler-all-db:5432/niffler-userdata'
+    url: 'jdbc:postgresql://niffler-all-db:5434/niffler-userdata'
   jpa:
     hibernate:
       ddl-auto: validate
