@@ -12,7 +12,7 @@ import java.io.IOException;
 public class ClasspathUserConverter implements ArgumentConverter {
 
     private static ObjectMapper om = new ObjectMapper();
-    private ClassLoader cl = LoginTest.class.getClassLoader();
+    private ClassLoader cl = ClasspathUserConverter.class.getClassLoader();
 
     @Override
     public UserJson convert(Object source, ParameterContext context)

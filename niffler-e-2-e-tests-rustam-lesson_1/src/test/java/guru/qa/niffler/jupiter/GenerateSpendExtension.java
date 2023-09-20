@@ -1,6 +1,8 @@
 package guru.qa.niffler.jupiter;
 
+import guru.qa.niffler.api.CategoryService;
 import guru.qa.niffler.api.SpendService;
+import guru.qa.niffler.model.CategoryJson;
 import guru.qa.niffler.model.SpendJson;
 import okhttp3.OkHttpClient;
 import org.junit.jupiter.api.extension.*;
@@ -14,6 +16,9 @@ public class GenerateSpendExtension implements ParameterResolver, BeforeEachCall
     public static final ExtensionContext.Namespace NAMESPACE_SPEND = ExtensionContext.Namespace
           .create(GenerateSpendExtension.class);
 
+    public static ExtensionContext.Namespace NAMESPACE_CATEGORY = ExtensionContext.Namespace
+        .create(GenerateCategoryExtension.class);
+
     private static final OkHttpClient httpClient = new OkHttpClient.Builder()
           .build();
 
@@ -25,9 +30,23 @@ public class GenerateSpendExtension implements ParameterResolver, BeforeEachCall
 
     private final SpendService spendService = retrofit.create(SpendService.class);
 
+    private final CategoryService categoryService = retrofit.create(CategoryService.class);
+
     @Override
     public void beforeEach(ExtensionContext context) throws Exception {
         GenerateSpend annotation = context.getRequiredTestMethod().getAnnotation(GenerateSpend.class);
+
+        // вырезать внизу //
+            CategoryJson category = new CategoryJson();
+            category.setCategory(annotation.category().category());
+            category.setUsername(annotation.category().username());
+
+            CategoryJson createdCategory = categoryService.addCategory(category)
+                .execute()
+                .body();
+            context.getStore(NAMESPACE_CATEGORY).put("category", createdCategory);
+        // вырезать вверху //
+
         if (annotation != null) {
             SpendJson spend = new SpendJson();
             spend.setUsername(annotation.username());

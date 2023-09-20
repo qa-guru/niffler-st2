@@ -56,7 +56,7 @@ public class SpendsWebTest {
           currency = CurrencyValues.RUB
     )
     @Test
-    void spendShouldBeDeletedByActionInTable(CategoryJson category, SpendJson spend) {
+    void spendShouldBeDeletedByActionInTable(CategoryJson category, GenerateSpend test, SpendJson spend) {
         try {
             $(".spendings-table tbody").$$("tr")
                 .find(text(spend.getDescription()))
