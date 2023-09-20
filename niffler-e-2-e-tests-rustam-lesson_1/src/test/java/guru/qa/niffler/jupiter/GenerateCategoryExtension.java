@@ -11,24 +11,11 @@ import java.io.IOException;
 
 public class GenerateCategoryExtension implements ParameterResolver, BeforeEachCallback {
 
-    public static ExtensionContext.Namespace NAMESPACE = ExtensionContext.Namespace
+    public static ExtensionContext.Namespace NAMESPACE_CATEGORY = ExtensionContext.Namespace
           .create(GenerateCategoryExtension.class);
 
     public static final OkHttpClient httpClient = new OkHttpClient.Builder()
           .build();
-
-//    public static final OkHttpClient httpClient = new OkHttpClient().newBuilder().addInterceptor(new Interceptor() {
-//        @Override
-//        public okhttp3.Response intercept(Chain chain) throws IOException {
-//            Request originalRequest = chain.request();
-//
-//            Request.Builder builder = originalRequest.newBuilder()
-//                  .header("Content-Type", "application/text; charset=utf-8");
-//
-//            Request newRequest = builder.build();
-//            return chain.proceed(newRequest);
-//        }
-//    }).build();
 
     private final Retrofit retrofit = new Retrofit.Builder()
           .client(httpClient)
@@ -47,10 +34,9 @@ public class GenerateCategoryExtension implements ParameterResolver, BeforeEachC
             category.setUsername(annotation.username());
 
             CategoryJson created = categoryService.addCategory(category)
-//            CategoryJson created = categoryService.addCategory("application/json; charset=UTF-8", category)
                   .execute()
                   .body();
-            context.getStore(NAMESPACE).put("category", created);
+            context.getStore(NAMESPACE_CATEGORY).put("category", created);
         }
     }
 
@@ -61,7 +47,7 @@ public class GenerateCategoryExtension implements ParameterResolver, BeforeEachC
 
     @Override
     public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
-        return extensionContext.getStore(NAMESPACE).get("category", CategoryJson.class);
+        return extensionContext.getStore(NAMESPACE_CATEGORY).get("category", CategoryJson.class);
     }
 
 }

@@ -3,6 +3,7 @@ package guru.qa.niffler.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import guru.qa.niffler.enums.CurrencyValues;
 
+import guru.qa.niffler.jupiter.GenerateCategory;
 import java.util.Date;
 import java.util.UUID;
 
@@ -12,7 +13,7 @@ public class SpendJson {
     @JsonProperty("spendDate")
     private Date spendDate;
     @JsonProperty("category")
-    private String category;
+    private GenerateCategory category;
     @JsonProperty("currency")
     private CurrencyValues currency;
     @JsonProperty("amount")
@@ -41,11 +42,11 @@ public class SpendJson {
         this.spendDate = spendDate;
     }
 
-    public String getCategory() {
+    public GenerateCategory getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(GenerateCategory category) {
         this.category = category;
     }
 

@@ -24,34 +24,46 @@ public class CallbacksExtension implements
     @Override
     public void afterAll(ExtensionContext context) throws Exception {
         System.out.println("#### AfterAllCallback");
+        context.getRequiredTestClass();
+//        context.getRequiredTestMethod();
+//        context.getRequiredTestInstance();
+//        context.getRequiredTestInstances();
     }
 
     @Override
     public void beforeEach(ExtensionContext context) throws Exception {
-//        context.getRequiredTestClass();
-//        context.getRequiredTestMethod();
-//        context.getRequiredTestInstance();
-//        context.getRequiredTestInstances();
+        context.getRequiredTestClass();
+        context.getRequiredTestMethod();
+        context.getRequiredTestInstance();
+        context.getRequiredTestInstances();
         System.out.println("        #### BeforeTestExecutionCallback");
     }
 
     @Override
     public void afterEach(ExtensionContext context) throws Exception {
         System.out.println("        #### BeforeEachCallback");
+        context.getRequiredTestClass();
+        context.getRequiredTestMethod();
+        context.getRequiredTestInstance();
+        context.getRequiredTestInstances();
     }
 
     @Override
     public void beforeTestExecution(ExtensionContext context) throws Exception {
-//        context.getRequiredTestClass();
-//        context.getRequiredTestMethod();
-//        context.getRequiredTestInstance();
-//        context.getRequiredTestInstances();
+        context.getRequiredTestClass();
+        context.getRequiredTestMethod();
+        context.getRequiredTestInstance();
+        context.getRequiredTestInstances();
         System.out.println("                #### BeforeTestExecutionCallback");
     }
 
     @Override
     public void afterTestExecution(ExtensionContext context) throws Exception {
         System.out.println("                #### AfterTestExecutionCallback");
+        context.getRequiredTestClass();
+        context.getRequiredTestMethod();
+        context.getRequiredTestInstance();
+        context.getRequiredTestInstances();
     }
 
     @Override

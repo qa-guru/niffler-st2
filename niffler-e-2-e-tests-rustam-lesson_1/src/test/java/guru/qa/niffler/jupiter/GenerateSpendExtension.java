@@ -11,7 +11,7 @@ import java.util.Date;
 
 public class GenerateSpendExtension implements ParameterResolver, BeforeEachCallback {
 
-    public static ExtensionContext.Namespace NAMESPACE = ExtensionContext.Namespace
+    public static final ExtensionContext.Namespace NAMESPACE_SPEND = ExtensionContext.Namespace
           .create(GenerateSpendExtension.class);
 
     private static final OkHttpClient httpClient = new OkHttpClient.Builder()
@@ -40,7 +40,7 @@ public class GenerateSpendExtension implements ParameterResolver, BeforeEachCall
             SpendJson created = spendService.addSpend(spend)
                   .execute()
                   .body();
-            context.getStore(NAMESPACE).put("spend", created);
+            context.getStore(NAMESPACE_SPEND).put("spend", created);
         }
     }
 
@@ -50,7 +50,7 @@ public class GenerateSpendExtension implements ParameterResolver, BeforeEachCall
     }
 
     @Override
-    public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
-        return extensionContext.getStore(NAMESPACE).get("spend", SpendJson.class);
+    public SpendJson resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
+        return extensionContext.getStore(NAMESPACE_SPEND).get("spend", SpendJson.class);
     }
 }
