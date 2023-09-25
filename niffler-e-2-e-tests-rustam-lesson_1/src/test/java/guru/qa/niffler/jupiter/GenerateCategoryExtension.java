@@ -46,7 +46,7 @@ public class GenerateCategoryExtension implements ParameterResolver, BeforeEachC
     }
 
     @Override
-    public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
+    public CategoryJson resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
         return extensionContext.getStore(NAMESPACE_CATEGORY).get("category", CategoryJson.class);
     }
 

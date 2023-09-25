@@ -6,8 +6,6 @@ import guru.qa.niffler.model.UserJson;
 import io.qameta.allure.AllureId;
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -21,12 +19,13 @@ import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolutionException;
 import org.junit.jupiter.api.extension.ParameterResolver;
 
-public class UserQueueExtensionHW implements
+public class UserQueueExtensionSeveralNamespaces implements
       BeforeEachCallback,
       AfterTestExecutionCallback,
       ParameterResolver {
 
-    public static Namespace USER_EXTENSION_NAMESPACE = Namespace.create(UserQueueExtensionHW.class);
+    public static Namespace USER_EXTENSION_NAMESPACE_1 = Namespace.create(UserQueueExtensionSeveralNamespaces.class);
+    public static Namespace USER_EXTENSION_NAMESPACE_2 = Namespace.create(UserQueueExtensionSeveralNamespaces.class);
 
     private static Queue<UserJson> USERS_WITH_FRIENDS_QUEUE = new ConcurrentLinkedQueue<>();
     private static Queue<UserJson> USERS_INVITATION_SENT_QUEUE = new ConcurrentLinkedQueue<>();
@@ -45,15 +44,13 @@ public class UserQueueExtensionHW implements
     public void beforeEach(ExtensionContext context) throws Exception {
         final String testId = getTestId(context);
         Parameter[] testParameters = context.getRequiredTestMethod().getParameters();
-        List<UserJson> usersList = new ArrayList<>();
-        List<UserType> userTypeList = new ArrayList<>();
+        UserType userType = null;
+        UserJson user = null;
+        int index = 0;
         for (Parameter parameter : testParameters) {
             User desiredUser = parameter.getAnnotation(User.class);
             if (desiredUser != null) {
-                UserType userType = desiredUser.userType();
-                userTypeList.add(userType);
-
-                UserJson user = null;
+                userType = desiredUser.userType();
 
                 while (user == null) {
                     switch (userType) {
@@ -62,34 +59,39 @@ public class UserQueueExtensionHW implements
                         case INVITATION_RECEIVED -> user = USERS_INVITATION_RECEIVED_QUEUE.poll();
                     }
                 }
-                usersList.add(user);
             }
+            if (index == 0) {
+                context.getStore(USER_EXTENSION_NAMESPACE_1).put(testId, Map.of(userType, user));
+            } else {
+                context.getStore(USER_EXTENSION_NAMESPACE_2).put(testId, Map.of(userType, user));
+            }
+
+            index++;
         }
-        context.getStore(USER_EXTENSION_NAMESPACE).put(testId, Map.of(userTypeList, usersList));
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public void afterTestExecution(ExtensionContext context) throws Exception {
         final String testId = getTestId(context);
-        Map<List<UserType>, List<UserJson>> users = (Map<List<UserType>, List<UserJson>>) context.getStore(USER_EXTENSION_NAMESPACE)
+        Map<UserType, UserJson> user1 = (Map<UserType, UserJson>) context.getStore(USER_EXTENSION_NAMESPACE_1)
               .get(testId);
 
-        List<UserJson> usersAfter = users.values().iterator().next();
-        List<UserType> usersJsonAfter = users.keySet().iterator().next();
-        int index = 0;
-        for (UserJson user: usersAfter) {
-
-            UserType userType = usersJsonAfter.get(index);
-            index++;
-
-            switch (userType) {
-                case WITH_FRIENDS -> USERS_WITH_FRIENDS_QUEUE.add(user);
-                case INVITATION_SENT -> USERS_INVITATION_SENT_QUEUE.add(user);
-                case INVITATION_RECEIVED -> USERS_INVITATION_RECEIVED_QUEUE.add(user);
-            }
+        UserType userType = user1.keySet().iterator().next();
+        switch (userType) {
+            case WITH_FRIENDS -> USERS_WITH_FRIENDS_QUEUE.add(user1.get(userType));
+            case INVITATION_SENT -> USERS_INVITATION_SENT_QUEUE.add(user1.get(userType));
+            case INVITATION_RECEIVED -> USERS_INVITATION_RECEIVED_QUEUE.add(user1.get(userType));
         }
+        Map<UserType, UserJson> user2 = (Map<UserType, UserJson>) context.getStore(USER_EXTENSION_NAMESPACE_1)
+              .get(testId);
 
+        UserType userType2 = user1.keySet().iterator().next();
+        switch (userType2) {
+            case WITH_FRIENDS -> USERS_WITH_FRIENDS_QUEUE.add(user2.get(userType));
+            case INVITATION_SENT -> USERS_INVITATION_SENT_QUEUE.add(user2.get(userType));
+            case INVITATION_RECEIVED -> USERS_INVITATION_RECEIVED_QUEUE.add(user2.get(userType));
+        }
     }
 
     @Override
@@ -104,14 +106,18 @@ public class UserQueueExtensionHW implements
     public UserJson resolveParameter(ParameterContext parameterContext,
           ExtensionContext extensionContext) throws ParameterResolutionException {
         final String testId = getTestId(extensionContext);
-        Map<List<UserType>, List<UserJson>> users = (Map<List<UserType>, List<UserJson>>) extensionContext.getStore(USER_EXTENSION_NAMESPACE)
+        Map<UserType, UserJson> user1 = (Map<UserType, UserJson>) extensionContext.getStore(USER_EXTENSION_NAMESPACE_1)
               .get(testId);
-        List<UserJson> usersResolve = users.values().iterator().next();
-        for (UserJson user: usersResolve) {
+        Map<UserType, UserJson> user2 = (Map<UserType, UserJson>) extensionContext.getStore(USER_EXTENSION_NAMESPACE_2)
+              .get(testId);
+
+        List<UserJson> usersList = new ArrayList<>();
+        usersList.add(user1.values().iterator().next());
+        usersList.add(user2.values().iterator().next());
+        for (UserJson user: usersList) {
             return user;
         }
-
-      return null;
+        return null;
     }
 
     private String getTestId(ExtensionContext context) {
