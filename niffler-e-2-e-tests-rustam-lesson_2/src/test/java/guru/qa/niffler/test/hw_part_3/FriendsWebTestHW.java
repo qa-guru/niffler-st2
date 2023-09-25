@@ -16,7 +16,7 @@ import io.qameta.allure.AllureId;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-@ExtendWith(UserQueueExtensionSeveralNamespaces.class)
+@ExtendWith(UserQueueExtensionHW.class)
 public class FriendsWebTestHW extends BaseWebTest {
 
     @AllureId("101")
