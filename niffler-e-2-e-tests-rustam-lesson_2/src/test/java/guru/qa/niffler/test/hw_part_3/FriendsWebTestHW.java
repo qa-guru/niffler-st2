@@ -8,7 +8,6 @@ import static guru.qa.niffler.jupiter.annotation.User.UserType.WITH_FRIENDS;
 import com.codeborne.selenide.Selenide;
 import guru.qa.niffler.jupiter.annotation.User;
 import guru.qa.niffler.jupiter.extension.UserQueueExtensionHW;
-import guru.qa.niffler.jupiter.extension.UserQueueExtensionSeveralNamespaces;
 import guru.qa.niffler.model.UserJson;
 import guru.qa.niffler.test.BaseWebTest;
 import io.qameta.allure.Allure;
