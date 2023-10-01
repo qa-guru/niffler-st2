@@ -17,7 +17,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-@ExtendWith(DaoExtension.class) добавить в аннотацию дао и проверить сработает ли.
+@ExtendWith(DaoExtension.class)
+//добавить в аннотацию дао и проверить сработает ли.
 public class LoginTest extends BaseWebTest {
 
     @DAO
