@@ -73,6 +73,31 @@ public class AuthUserDAOJdbc implements AuthUserDAO, UserDataUserDAO {
   @Override
   public void deleteUserById(UUID userId) {
 
+    try (Connection conn = authDs.getConnection()) {
+      conn.setAutoCommit(false);
+
+      try (
+          PreparedStatement authPs = conn.prepareStatement(
+          "DELETE FROM authorities WHERE user_id = ?");
+
+          PreparedStatement usersPs = conn.prepareStatement(
+          "DELETE FROM users WHERE id = ?");
+      ) {
+
+        authPs.setObject(1, userId);
+        usersPs.setObject(1, userId);
+        authPs.executeUpdate();
+        usersPs.executeUpdate();
+        conn.commit();
+        conn.setAutoCommit(true);
+      } catch (SQLException e) {
+        conn.rollback();
+        conn.setAutoCommit(true);
+      }
+
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   @Override
@@ -96,7 +121,22 @@ public class AuthUserDAOJdbc implements AuthUserDAO, UserDataUserDAO {
   }
 
   @Override
-  public void deleteUserByIdInUserData(UUID userId) {
+  public void deleteUserByIdInUserData(UserEntity user) {
 
+    try (Connection connUserdata = userdataDs.getConnection()) {
+
+      try (PreparedStatement userdataPS = connUserdata.prepareStatement(
+          "DELETE FROM users WHERE username = ?");
+      ) {
+        userdataPS.setString(1, user.getUsername());
+        userdataPS.executeUpdate();
+      }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
   }
+
+  // todo: update с помощью userdata таблицы, продумать добавление фото, разные фото и т.д.
+  // UPDATE userdata SET currency и т.д.
+  // SELECT * FROM userdata WHERE username = ''
 }

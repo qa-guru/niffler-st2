@@ -19,7 +19,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 @ExtendWith(DaoExtension.class)
 //добавить в аннотацию дао и проверить сработает ли.
-public class LoginTest extends BaseWebTest {
+public class LoginTestLesson3 extends BaseWebTest {
 
     @DAO
     private AuthUserDAO authUserDAO;
@@ -50,7 +50,7 @@ public class LoginTest extends BaseWebTest {
 
     @AfterEach
     void deleteUser() {
-        userDataUserDAO.deleteUserByIdInUserData(user.getId());
+        userDataUserDAO.deleteUserByIdInUserData(user);
         authUserDAO.deleteUserById(user.getId());
     }
 
