@@ -97,6 +97,7 @@ dependencies {
     testImplementation 'com.squareup.okhttp3:logging-interceptor:3.14.9'
     testImplementation 'io.rest-assured:rest-assured:3.3.0'
     testImplementation 'org.assertj:assertj-core:3.24.2'
+    implementation 'com.github.javafaker:javafaker:1.0.2'
     // DB
     testImplementation "org.springframework.security:spring-security-crypto:${springComponentsVersion}"
     testImplementation "org.springframework:spring-jdbc:${springComponentsVersion}"
@@ -104,6 +105,7 @@ dependencies {
     testImplementation 'p6spy:p6spy:3.9.1'
     testImplementation 'org.hibernate:hibernate-core:6.1.7.Final'
     testImplementation 'com.github.vertical-blank:sql-formatter:2.0.3'
+    implementation 'commons-io:commons-io:2.11.0'
     // Allure
     testImplementation "io.qameta.allure:allure-attachments:${allureVersion}"
     testImplementation("io.qameta.allure:allure-junit5:${allureVersion}") {
